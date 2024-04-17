@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "Sobre mi";
 
@@ -22,50 +23,26 @@ const textCase = "uppercase";
 ---
 
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <style define:vars={{skillColor, fontWeight, textCase}}>
-            h1 {
-              color: purple;
-              font-size: 4rem;
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: var(--fontWeight);
-                text-transform: var(--textCase)
-            }
-          </style>
-	</head>
-	<body>
-        <a href="/">Inicio</a>
-        <a href="/about/">Sobre mi</a>
-        <a href="/blog/">Blog</a>
 
-		<h1>{pageTitle}</h1>
-        <h2>... ¡y mi nuevo sitio Astro!</h2>
-        <p>Estoy creando un sitio con Astro y publicandolo en netlify. Esta es la segunda página de mi sitio web del curso de introducción de Astro.</p>
-        <p>Este sitio se irá actualizando conforme voy avanzando en el curso de introducción</p>
+<BaseLayout pageTitle={pageTitle}>
+    <h2>... ¡y mi nuevo sitio Astro!</h2>
+    <p>Estoy creando un sitio con Astro y publicandolo en netlify. Esta es la segunda página de mi sitio web del curso de introducción de Astro.</p>
+    <p>Este sitio se irá actualizando conforme voy avanzando en el curso de introducción</p>
 
-        <p>He aquí algunos datos sobre mí:</p>
-        <ul>
-            <li>Me llamo {identity.firstName}</li>
-            <li>Vivo en {identity.country} y trabajo como {identity.occupation}.</li>
-            {identity.hobbies.length >= 2 && 
-                <li>Dos de mis aficiones son: {identity.hobbies[0]} y {identity.hobbies[1]}</li>
-            }
-        </ul>
-        <p>Mis habilidades son</p>
-        <ul>
-            {skills.map((skill) => <li class="skill">{skill}</li>)}
-        </ul>
+    <p>He aquí algunos datos sobre mí:</p>
+    <ul>
+        <li>Me llamo {identity.firstName}</li>
+        <li>Vivo en {identity.country} y trabajo como {identity.occupation}.</li>
+        {identity.hobbies.length >= 2 && 
+            <li>Dos de mis aficiones son: {identity.hobbies[0]} y {identity.hobbies[1]}</li>
+        }
+    </ul>
+    <p>Mis habilidades son</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
 
-        {happy && <p>¡Estoy feliz de aprender Astro!</p>}
-        {finished && <p>¡He terminado este tutorial!</p>}
-        {goal === 3 ? <p>Mi objetivo es terminar en 3 dias.</p> : <p>Mi objetivo no son 3 días.</p>}
-	</body>
-</html>
+    {happy && <p>¡Estoy feliz de aprender Astro!</p>}
+    {finished && <p>¡He terminado este tutorial!</p>}
+    {goal === 3 ? <p>Mi objetivo es terminar en 3 dias.</p> : <p>Mi objetivo no son 3 días.</p>}
+</BaseLayout>
